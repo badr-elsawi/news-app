@@ -190,3 +190,46 @@ ThemeData lightTheme2 = ThemeData(
     ),
   ),
 );
+
+
+ThemeData lightTheme3 = ThemeData(
+  useMaterial3: true,
+  scaffoldBackgroundColor: const Color(0xffFDC7D7),
+  appBarTheme: const AppBarTheme(
+    backgroundColor: Color(0xffFDC7D7),
+    elevation: 0,
+    scrolledUnderElevation: 0,
+    iconTheme: IconThemeData(
+      color: Color(0xff2A2746),
+    ),
+    actionsIconTheme: IconThemeData(
+      size: 30,
+    ),
+    systemOverlayStyle: SystemUiOverlayStyle(
+      statusBarColor: Color(0xffFDC7D7),
+      systemNavigationBarColor: Color(0xffFEFEFE),
+      statusBarBrightness: Brightness.dark,
+      statusBarIconBrightness: Brightness.dark,
+    ),
+  ),
+  cardColor: const Color(0xff8445EE),
+  dividerColor: const Color(0xff2A2746),
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Color(0xffFEFEFE),
+    elevation: 0,
+    selectedItemColor: Color(0xff0F182F),
+    unselectedItemColor: Color(0xff0F182F),
+  ),
+  textTheme: const TextTheme(
+    bodyLarge: TextStyle(
+      color: Colors.black,
+      fontSize: 18,
+      overflow: TextOverflow.ellipsis,
+    ),
+    bodySmall: TextStyle(
+      color: Color(0xff0F182F),
+      fontSize: 15,
+      overflow: TextOverflow.ellipsis,
+    ),
+  ),
+);
