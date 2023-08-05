@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:news_app/layout/news_cubit/news_states.dart';
 import 'package:news_app/models/data_model.dart';
@@ -9,6 +10,7 @@ import 'package:news_app/pages/sport.dart';
 import 'package:news_app/pages/tech.dart';
 import 'package:news_app/shared/constants.dart';
 import 'package:news_app/shared/network/remote/http_service.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class NewsCubit extends Cubit<NewsStates> {
   NewsCubit() : super(NewsInitialState());
@@ -26,9 +28,9 @@ class NewsCubit extends Cubit<NewsStates> {
     pageIndex = index;
 
     emit(ChangeNavBarState());
-    if(index == 1) getTechNews();
-    if(index == 2) getSportNews();
-    if(index == 3) getHealthNews();
+    if (index == 1) getTechNews();
+    if (index == 2) getSportNews();
+    if (index == 3) getHealthNews();
   }
 
   // get home news *****************************************
@@ -60,7 +62,7 @@ class NewsCubit extends Cubit<NewsStates> {
 
   void getSportNews() async {
     emit(GetSportLoadingState());
-    if(sportModel == null){
+    if (sportModel == null) {
       DioService.getData(
         url: 'v2/top-headlines',
         query: {
@@ -78,10 +80,9 @@ class NewsCubit extends Cubit<NewsStates> {
         print('$e **************************************');
         emit(GetSportErrorState());
       });
-    }
-    else{
+    } else {
       emit(GetSportLoadingState());
-      await Future.delayed(Duration(milliseconds: 500));
+      // await Future.delayed(Duration(milliseconds: 500));
       emit(GetSportSuccessState());
     }
   }
@@ -112,7 +113,7 @@ class NewsCubit extends Cubit<NewsStates> {
       });
     } else {
       emit(GetTechLoadingState());
-      await Future.delayed(Duration(milliseconds: 500));
+      // await Future.delayed(Duration(milliseconds: 500));
       emit(GetTechSuccessState());
     }
   }
@@ -123,7 +124,7 @@ class NewsCubit extends Cubit<NewsStates> {
 
   void getHealthNews() async {
     emit(GetHealthLoadingState());
-    if(healthModel == null){
+    if (healthModel == null) {
       DioService.getData(
         url: 'v2/top-headlines',
         query: {
@@ -141,12 +142,17 @@ class NewsCubit extends Cubit<NewsStates> {
         print('$e **************************************');
         emit(GetHealthErrorState());
       });
-    }
-    else{
+    } else {
       emit(GetHealthLoadingState());
-      await Future.delayed(Duration(milliseconds: 500));
+      // await Future.delayed(Duration(milliseconds: 500));
       emit(GetHealthSuccessState());
     }
   }
+
 //*********************************************************
+// launch url
+
+
+
+
 }

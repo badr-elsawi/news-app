@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:news_app/layout/news_cubit/news_cubit.dart';
 import 'package:news_app/shared/components/image_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 import '../../models/article_model.dart';
 
@@ -55,7 +58,23 @@ class ArticleItem extends StatelessWidget {
                     ),
                     Spacer(),
                     MaterialButton(
-                      onPressed: () {},
+                      onPressed: () async {
+                        if (await canLaunch('${model.url!} 555465656')) {
+                          launch(
+                            model.url!,
+                            forceWebView: true,
+                            enableJavaScript: true,
+                          );
+                        } else {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(
+                              content: Text(
+                                'unvalid link',
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       color: Theme.of(context).cardColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(40),
@@ -63,13 +82,13 @@ class ArticleItem extends StatelessWidget {
                       child: Text(
                         'view',
                         style: Theme.of(context).textTheme.bodySmall!.merge(
-                          TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context)
-                                .bottomNavigationBarTheme
-                                .selectedItemColor,
-                          ),
-                        ),
+                              TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Theme.of(context)
+                                    .bottomNavigationBarTheme
+                                    .selectedItemColor,
+                              ),
+                            ),
                       ),
                     ),
                   ],

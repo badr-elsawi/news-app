@@ -19,3 +19,7 @@ class GetTechLoadingState extends NewsStates {}
 class GetTechSuccessState extends NewsStates {}
 class GetTechErrorState extends NewsStates {}
 //*****************************************************
+//*****************************************************
+class UrlLoadingState extends NewsStates {}
+class UrlErrorState extends NewsStates {}
+class UrlSuccessState extends NewsStates {}

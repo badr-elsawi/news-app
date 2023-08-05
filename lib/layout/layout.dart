@@ -34,7 +34,9 @@ class Home extends StatelessWidget {
                       AppCubit.get(context).changeMode();
                     },
                     icon: Icon(
-                      AppCubit.get(context).isDark ? Icons.sunny: Icons.brightness_2_rounded,
+                      AppCubit.get(context).isDark
+                          ? Icons.sunny
+                          : Icons.brightness_2_rounded,
                     ),
                   ),
                 ),

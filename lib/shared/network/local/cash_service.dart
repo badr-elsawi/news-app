@@ -14,7 +14,7 @@ class CashService {
     return await sharedPreferences.setBool(key, value);
   }
 
-  static bool getBoolen({required String key}) {
-    return sharedPreferences.getBool(key)!;
+  static bool? getBoolen({required String key}) {
+    return sharedPreferences.getBool(key);
   }
 }

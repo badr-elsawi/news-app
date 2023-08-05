@@ -12,21 +12,26 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   DioService.init();
   await CashService.init();
-  bool isDark = CashService.getBoolen(key: 'isDark');
+  bool? isDark = CashService.getBoolen(key: 'isDark');
   runApp(MyApp(isDark));
 }
 
 class MyApp extends StatelessWidget {
+  bool? isDark;
 
-  bool isDark ;
   MyApp(this.isDark);
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (BuildContext contextt) => AppCubit()..changeMode(themeDark: isDark)),
         BlocProvider(
-            create: (BuildContext contextt) => NewsCubit()..getHomeNews()),
+          create: (BuildContext contextt) =>
+              AppCubit()..changeMode(themeDark: isDark),
+        ),
+        BlocProvider(
+          create: (BuildContext contextt) => NewsCubit()..getHomeNews(),
+        ),
       ],
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (context, state) {},
@@ -45,5 +50,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-
